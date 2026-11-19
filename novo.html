@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Gerador de conteúdo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Unbounded:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .gen{display:grid;grid-template-columns:1fr 1fr;gap:28px;padding:50px 0 80px}
+  @media (max-width:900px){.gen{grid-template-columns:1fr}}
+  .panel{border:1px solid var(--line);border-radius:var(--r);background:var(--bg-2);padding:26px}
+  .panel h2{font-family:var(--display);font-weight:600;font-size:20px;margin-bottom:18px}
+  label.f{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--muted);margin:16px 0 6px}
+  .f-in,.f-ta,select.f-in{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;color:var(--ink);font:inherit;font-size:15px;outline:none}
+  .f-ta{min-height:90px;resize:vertical;font-family:var(--body)}
+  .f-in:focus,.f-ta:focus{border-color:rgba(244,243,239,.4)}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .blk{border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:12px;background:var(--bg-3)}
+  .blk-h{display:flex;justify-content:space-between;align-items:center;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--silver-2);margin-bottom:8px}
+  .blk-h button{background:none;border:0;color:var(--dim);cursor:pointer;font:inherit;font-size:12px}
+  .blk-h button:hover{color:var(--ink)}
+  .blk .f-in,.blk .f-ta{margin-top:6px}
+  .adds{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  pre.out{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:16px;font-family:var(--mono);font-size:12.5px;white-space:pre-wrap;word-break:break-word;max-height:520px;overflow:auto;color:var(--ink)}
+  .link-box{font-family:var(--mono);font-size:14px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;word-break:break-all;margin:6px 0 12px}
+  .help{color:var(--muted);font-size:14px;margin-bottom:14px}
+  .help ol{padding-left:20px;margin-top:6px}
+  .sticky{position:sticky;top:90px;align-self:start}
+</style>
+</head>
+<body>
+<nav class="bar"><div class="wrap"><a class="bar-back" href="index.html">← Biblioteca de Prompts</a></div></nav>
+<main class="wrap">
+  <section style="padding-top:50px">
+    <span class="g-badge">Uso interno</span>
+    <h1 class="g-title" style="margin:20px 0">Gerador de <em class="hl">conteúdo novo.</em></h1>
+    <p class="g-lead" style="margin:0">Preencha, copie o código gerado e cole no topo da lista em <b>conteudos.js</b>. Pronto, a página existe.</p>
+  </section>
+
+  <div class="gen">
+    <div class="panel">
+      <h2>1. Dados do post</h2>
+      <label class="f">Título</label><input class="f-in" id="titulo" placeholder="Ex.: Seu *editor de cortes* automático com IA  (entre * = destaque)">
+      <div class="row">
+        <div><label class="f">Slug (fim do link)</label><input class="f-in" id="slug" placeholder="gerado automaticamente"></div>
+        <div><label class="f">Palavra-chave ManyChat</label><input class="f-in" id="kw" placeholder="Ex.: CORTES"></div>
+      </div>
+      <div class="row">
+        <div><label class="f">Categoria</label><input class="f-in" id="cat" list="cats" placeholder="Escolha ou digite uma nova"><datalist id="cats"></datalist></div>
+        <div><label class="f">Data</label><input class="f-in" id="data" type="date"></div>
+      </div>
+      <div class="row">
+        <div><label class="f">Selo do card</label><input class="f-in" id="selo" placeholder="Ex.: prompt pronto · 5 skills + instalação"></div>
+        <div><label class="f">Link do GitHub (opcional)</label><input class="f-in" id="github" placeholder="https://github.com/..."></div>
+      </div>
+      <label class="f">Resumo (aparece no card e no topo)</label><textarea class="f-ta" id="resumo" style="min-height:70px"></textarea>
+      <label class="f">Destaques do topo (um por linha, opcional)</label><textarea class="f-ta" id="destaques" style="min-height:60px" placeholder="Ferramentas **gratuitas**&#10;Funciona no seu PC"></textarea>
+
+      <h2 style="margin-top:30px">2. Blocos do conteúdo</h2>
+      <div id="blocos"></div>
+      <div class="adds" id="adds"></div>
+    </div>
+
+    <div class="panel sticky">
+      <h2>3. Copie e publique</h2>
+      <label class="f">Endereço do site</label><input class="f-in" id="dominio" placeholder="itspauloestevao.pages.dev">
+      <label class="f">Link para o ManyChat</label><div class="link-box" id="link">—</div>
+      <div class="help">Depois de copiar:
+        <ol><li>Abra <b>conteudos.js</b>.</li><li>Cole logo abaixo da linha <b>window.CONTEUDOS = [</b>.</li><li>Salve e publique o site (veja o LEIA-ME).</li></ol></div>
+      <div class="adds" style="margin:0 0 14px"><button class="btn solid sm" id="copyCode">Copiar código</button><button class="btn sm" id="copyLink">Copiar link</button><button class="btn sm" id="limpar">Limpar</button></div>
+      <pre class="out" id="out"></pre>
+    </div>
+  </div>
+</main>
+<script src="conteudos.js"></script>
+<script>
+(function(){
+  const S = window.SITE || {};
+  const $ = s => document.querySelector(s);
+  const TIPOS = {
+    secao:  {nome:"Seção / Passo",campos:[["rotulo","in","Rótulo pequeno (ex.: Passo 1, O conceito)"],["titulo","in","Título da seção"]]},
+    texto:  {nome:"Texto",   campos:[["conteudo","ta","Parágrafo. Use **assim** para negrito."]]},
+    prompt: {nome:"Prompt",  campos:[["titulo","in","Nome do prompt"],["conteudo","ta","Cole o prompt aqui"]]},
+    codigo: {nome:"Comando", campos:[["titulo","in","Ex.: Terminal"],["conteudo","ta","Comando de instalação"]]},
+    alerta: {nome:"Atenção", campos:[["conteudo","ta","Cuidado importante"]]},
+    passos: {nome:"Passo a passo",campos:[["itens","ta","Um passo por linha"]]},
+    lista:  {nome:"Lista",   campos:[["itens","ta","Um item por linha"]]},
+    dica:   {nome:"Dica",    campos:[["conteudo","ta","Dica em destaque"]]},
+    botao:  {nome:"Botão",   campos:[["texto","in","Texto do botão"],["url","in","https://..."]]},
+    video:  {nome:"Vídeo YouTube",campos:[["youtube","in","ID ou link do vídeo"]]},
+    imagem: {nome:"Imagem",  campos:[["src","in","imagens/arquivo.jpg"],["legenda","in","Legenda (opcional)"]]},
+  };
+  let blocos = [];
+  const KEY = "gerador-rascunho-v2";
+  const slugify = t => t.replace(/\*/g,"").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,70);
+  const hoje = () => { const d=new Date(); d.setMinutes(d.getMinutes()-d.getTimezoneOffset()); return d.toISOString().slice(0,10); };
+  let slugManual = false;
+
+  $("#cats").innerHTML = (S.categorias||[]).map(c=>`<option value="${c}">`).join(""); $("#cat").value = (S.categorias||[""])[0];
+  $("#data").value = hoje();
+  $("#adds").innerHTML = Object.entries(TIPOS).map(([k,v])=>`<button class="chip" data-add="${k}">+ ${v.nome}</button>`).join("");
+
+  function drawBlocos(){
+    $("#blocos").innerHTML = blocos.map((b,i)=>`<div class="blk"><div class="blk-h">${TIPOS[b.tipo].nome}
+      <span><button data-up="${i}">↑</button> <button data-del="${i}">remover</button></span></div>
+      ${TIPOS[b.tipo].campos.map(([k,t,ph])=> t==="ta"
+        ? `<textarea class="f-ta" data-i="${i}" data-k="${k}" placeholder="${ph}">${(b[k]||"").replace(/</g,"&lt;")}</textarea>`
+        : `<input class="f-in" data-i="${i}" data-k="${k}" placeholder="${ph}" value="${(b[k]||"").replace(/"/g,"&quot;")}">`).join("")}</div>`).join("")
+      || `<p class="help">Adicione blocos abaixo. Ex.: um Texto de introdução e um ou mais Prompts.</p>`;
+  }
+
+  const js = s => JSON.stringify(s);
+  const tpl = s => "`" + s.replace(/\\/g,"\\\\").replace(/`/g,"\\`").replace(/\$\{/g,"\\${") + "`";
+  function gerar(){
+    const slug = $("#slug").value.trim() || slugify($("#titulo").value);
+    const linhas = blocos.map(b=>{
+      const o = {tipo:b.tipo};
+      if (b.tipo==="passos"||b.tipo==="lista"){
+        const itens=(b.itens||"").split("\n").map(s=>s.trim()).filter(Boolean);
+        return `      { tipo: ${js(b.tipo)}, itens: [\n${itens.map(i=>"        "+js(i)+",").join("\n")}\n      ]},`;
+      }
+      if (b.tipo==="video"){ const m=(b.youtube||"").match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{6,})/); b.youtube = m?m[1]:(b.youtube||"").trim(); }
+      const partes = TIPOS[b.tipo].campos.map(([k])=> k==="conteudo" && (b.tipo==="prompt"||b.tipo==="codigo") ? `${k}: ${tpl((b[k]||"").trim())}` : `${k}: ${js((b[k]||"").trim())}`);
+      return `      { tipo: ${js(b.tipo)}, ${partes.join(", ")} },`;
+    }).join("\n");
+    const code = `  {
+    slug: ${js(slug)},
+    titulo: ${js($("#titulo").value.trim())},
+    categoria: ${js($("#cat").value)},
+    data: ${js($("#data").value)},
+    palavraChave: ${js($("#kw").value.trim().toUpperCase())},
+    selo: ${js($("#selo").value.trim())},
+    resumo: ${js($("#resumo").value.trim())},
+    destaques: ${js($("#destaques").value.split("\n").map(s=>s.trim()).filter(Boolean))},
+    github: ${js($("#github").value.trim())},
+    blocos: [
+${linhas}
+    ],
+  },`;
+    $("#out").textContent = code;
+    const dom = ($("#dominio").value.trim()||"itspauloestevao.pages.dev").replace(/^https?:\/\//,"").replace(/\/$/,"");
+    $("#link").textContent = `https://${dom}/p/${slug||"..."}`;
+    try { localStorage.setItem(KEY, JSON.stringify({blocos, f:{titulo:$("#titulo").value,slug:$("#slug").value,kw:$("#kw").value,cat:$("#cat").value,data:$("#data").value,resumo:$("#resumo").value,selo:$("#selo").value,github:$("#github").value,destaques:$("#destaques").value,dominio:$("#dominio").value}, slugManual})); } catch(_){}
+  }
+
+  // rascunho salvo
+  try { const r = JSON.parse(localStorage.getItem(KEY)||"null"); if (r){ blocos=r.blocos||[]; slugManual=!!r.slugManual; Object.entries(r.f||{}).forEach(([k,v])=>{ if($("#"+k)&&v) $("#"+k).value=v; }); } } catch(_){}
+  if (!blocos.length) blocos=[{tipo:"secao"},{tipo:"texto"},{tipo:"prompt"}];
+
+  $("#titulo").addEventListener("input",()=>{ if(!slugManual) $("#slug").value = slugify($("#titulo").value); gerar(); });
+  $("#slug").addEventListener("input",()=>{ slugManual = !!$("#slug").value; $("#slug").value = slugify($("#slug").value.replace(/-$/,"")) + ($("#slug").value.endsWith("-")?"-":""); gerar(); });
+  ["kw","cat","data","resumo","selo","github","destaques","dominio"].forEach(id=>$("#"+id).addEventListener("input",gerar));
+  $("#adds").addEventListener("click",e=>{ const b=e.target.closest("[data-add]"); if(!b) return; blocos.push({tipo:b.dataset.add}); drawBlocos(); gerar(); });
+  $("#blocos").addEventListener("input",e=>{ const el=e.target; if(el.dataset.i==null) return; blocos[+el.dataset.i][el.dataset.k]=el.value; gerar(); });
+  $("#blocos").addEventListener("click",e=>{
+    const d=e.target.dataset;
+    if(d.del!=null){ blocos.splice(+d.del,1); drawBlocos(); gerar(); }
+    if(d.up!=null && +d.up>0){ const i=+d.up; [blocos[i-1],blocos[i]]=[blocos[i],blocos[i-1]]; drawBlocos(); gerar(); }
+  });
+  async function copy(t,btn,label){ try{ await navigator.clipboard.writeText(t); }catch(_){ const ta=document.createElement("textarea"); ta.value=t; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove(); } btn.textContent="Copiado ✓"; setTimeout(()=>btn.textContent=label,1600); }
+  $("#copyCode").onclick=e=>copy($("#out").textContent,e.target,"Copiar código");
+  $("#copyLink").onclick=e=>copy($("#link").textContent,e.target,"Copiar link");
+  $("#limpar").onclick=()=>{ if(!confirm("Limpar o formulário?")) return; const dom=$("#dominio").value; try{localStorage.removeItem(KEY);}catch(_){} ["titulo","slug","kw","resumo","selo","github","destaques"].forEach(id=>$("#"+id).value=""); $("#data").value=hoje(); $("#dominio").value=dom; slugManual=false; blocos=[{tipo:"secao"},{tipo:"texto"},{tipo:"prompt"}]; drawBlocos(); gerar(); };
+  drawBlocos(); gerar();
+})();
+</script>
+
+</body>
+</html>
