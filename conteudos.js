@@ -46,13 +46,13 @@ window.CONTEUDOS = [
     titulo: "GTA",
     categoria: "Claude",
     data: "2026-11-19",
-    palavraChave: "GTA",
+    palavraChave: "PROMPT GERAÇÃO DE FOTO GTA 6",
     selo: "Prompt GTA 6",
-    resumo: "Cole esse prompt para a geração da sua foto de GTA 6",
+    resumo: "Cole o prompt  abaixo para a geração da sua foto de GTA 6",
     destaques: [],
     github: "",
     blocos: [
-      { tipo: "prompt", titulo: "Geração de foto GTA 6", conteudo: `xactly 10s, 9:16, one static macro shot of the navy jersey from the attached image; camera never moves, same angle, framing and light. Start: bare mesh fabric, no logo. Loose colored threads rise from the weave and pull tight by themselves, no needle, machine or hands, thousands of tiny stitches racing like a real time-lapse. First the gold and purple outline of the big “VI”, then rows of satin stitches fill it with a sunset gradient and purple palms, then the white puffy “grand theft auto” letters stitch on top. Real threads with fibers and sheen, relief rising, fabric puckering. Last second: finished embroidery identical to the image, still. No morphing or glow. Sound: thread pulling, fabric rustle.` },
+      { tipo: "prompt", titulo: "Geração de foto GTA 6", conteudo: `Exactly 10s, 9:16, one static macro shot of the navy jersey from the attached image; camera never moves, same angle, framing and light. Start: bare mesh fabric, no logo. Loose colored threads rise from the weave and pull tight by themselves, no needle, machine or hands, thousands of tiny stitches racing like a real time-lapse. First the gold and purple outline of the big “VI”, then rows of satin stitches fill it with a sunset gradient and purple palms, then the white puffy “grand theft auto” letters stitch on top. Real threads with fibers and sheen, relief rising, fabric puckering. Last second: finished embroidery identical to the image, still. No morphing or glow. Sound: thread pulling, fabric rustle.` },
     ],
   },
   {
