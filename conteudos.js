@@ -40,7 +40,8 @@ window.SITE = {
   },
 };
 
-window.CONTEUDOS = [    {
+window.CONTEUDOS = [   
+   {
     slug: "gta",
     titulo: "GTA",
     categoria: "Claude",
