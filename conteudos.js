@@ -40,7 +40,22 @@ window.SITE = {
   },
 };
 
-window.CONTEUDOS = [
+window.CONTEUDOS = [  {
+    slug: "gta",
+    titulo: "GTA",
+    categoria: "Claude",
+    data: "2026-11-19",
+    palavraChave: "GTA",
+    selo: "Prompt GTA 6",
+    resumo: "Prompt do GTA 6",
+    destaques: [],
+    github: "",
+    blocos: [
+      { tipo: "secao", rotulo: "", titulo: "" },
+      { tipo: "texto", conteudo: "" },
+      { tipo: "prompt", titulo: "", conteudo: `` },
+    ],
+  },
   {
     slug: "cortes-automaticos-de-video",
     titulo: "Seu *editor de cortes* automático com IA",
