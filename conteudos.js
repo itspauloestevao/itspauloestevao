@@ -43,6 +43,189 @@ window.SITE = {
 window.CONTEUDOS = [
 
      {
+    slug: "claudemotion",
+    titulo: "ClaudeMotion",
+    categoria: "Claude",
+    data: "2026-11-19",
+    palavraChave: "MOTION",
+    selo: "Claude Motion",
+    resumo: "Prompt detalhado para recriar o estilo do vídeo de 18 s em que cada frase mostra um efeito diferente em tela cheia. Troque o que está entre [colchetes]. O resto pode colar como está.",
+    destaques: ["Para quem for usar","Precisa do Claude Code (no computador) e do Remotion, que é gratuito.","Troque [SuaMarca], as cores e a narração. A estrutura funciona para qualquer tema: \"Isso não é X. Nem isso. Nem isso. Foi tudo feito com Y.\"","Peça uma cena por vez. Fazer tudo de uma vez costuma sair bagunçado."],
+    github: "",
+    blocos: [
+      { tipo: "prompt", titulo: "Transforme qualquer foto em personagem do GTA VI", conteudo: `Quero criar um vídeo de motion design 100% em código, com Remotion (React).
+Nada de After Effects nem programa de edição: cada quadro é desenhado por código.
+
+=====================================================================
+1. FORMATO
+=====================================================================
+- Vertical 9:16, 1080x1920, 30 fps.
+- Duração: 18 segundos (540 quadros).
+- 12 cenas em tela cheia, trocando no ritmo da narração.
+- Exporte em MP4 (H.264, áudio AAC).
+
+=====================================================================
+2. CLIMA GERAL (vale para o vídeo inteiro)
+=====================================================================
+- Cada cena ocupa a tela inteira, com uma cor de fundo forte e própria:
+  laranja, azul, preto, branco, rosa, conforme a cena.
+- Câmera: um zoom bem lento e contínuo em todas as cenas (de 1,00 para 1,06),
+  com um balanço muito leve, como câmera na mão bem estável. Nunca fica parado.
+- Grão de filme leve e vinheta escura nas bordas em todo o vídeo.
+- Um brilho suave (glow) na cor da cena atrás do elemento principal.
+
+=====================================================================
+3. O "HUD" (moldura fixa em todas as cenas)
+=====================================================================
+Por cima de todas as cenas, uma moldura estilo câmera/monitor:
+- Cantoneiras finas (só os 4 cantos em "L") a 60 px da borda, dentro da margem segura.
+- Canto de cima à esquerda: bolinha vermelha piscando + "[SUAMARCA] — REEL" em letra mono pequena.
+- Canto de cima à direita: "CENA 01 / 12", atualizando a cada cena.
+- Canto de baixo à esquerda: o nome da técnica da cena (ex.: "TIPOGRAFIA CINÉTICA", "3D / VOXELS",
+  "PARTÍCULAS · n = 3200", "SOM · ONDA REAL DA VOZ", "CÓDIGO REAL DESTA PEÇA").
+- Canto de baixo à direita: timecode real do vídeo "00:00:04:11" (segundos:quadro), contando.
+- Letra do HUD: monoespaçada (JetBrains Mono ou IBM Plex Mono), 24 px, 60% de opacidade.
+- Os textos de baixo ficam acima dos 380 px finais (para não ficarem atrás dos botões do Instagram).
+
+=====================================================================
+4. A LEGENDA (o que é falado)
+=====================================================================
+- Fica na parte de cima, entre y 300 e y 700, alinhada ao centro.
+  O efeito da cena fica no meio da tela, abaixo da legenda.
+- Letra sem serifa bem grossa (Inter 800), 90 a 100 px, com sombra suave.
+  Branca nos fundos escuros e coloridos; preta nos fundos brancos.
+- Aparece PALAVRA POR PALAVRA, no instante em que cada palavra é falada
+  (cada palavra entra subindo 20 px e saindo de um leve desfoque, em ~6 quadros).
+- A frase vai se acumulando em até 3 linhas; na próxima frase, a anterior some e começa outra.
+- As palavras-chave ficam em LARANJA [#FF6A2B]: "After Effects", "isso", "código", "Claude",
+  "Ninguém", "texto", "MOTION". (Nas cenas de fundo laranja, use branco no destaque.)
+
+=====================================================================
+5. NARRAÇÃO (texto falado)
+=====================================================================
+Isso não é After Effects.
+Nem isso.
+Nem isso.
+Cada quadro desse vídeo foi escrito em código pelo Claude.
+Tipografia, 3D, partículas, câmera, som.
+Ninguém abriu um programa de edição.
+Quer ver o texto que gerou isso?
+Comenta MOTION.
+
+Vou gerar a voz no ElevenLabs e te mandar o MP3. Marque o tempo de cada palavra
+(transcrição com tempo por palavra) e use esses tempos para a legenda e para os cortes de cena.
+
+=====================================================================
+6. AS 12 CENAS (tempo aproximado; ajuste pela voz)
+=====================================================================
+
+CENA 1 · 0,0 a 1,0 s · fundo LARANJA [#FF6A2B]
+Tela laranja com textos de interface pequenos (ex.: "SHOWREEL ——— 2026").
+O nome "[SuaMarca]" sendo DIGITADO letra por letra, em preto, Inter 900, com cursor em bloco piscando.
+
+CENA 2 · 1,0 a 2,6 s · LARANJA  (legenda: "Isso não é After Effects.")
+O nome completo "[SuaMarca]" grande em preto; embaixo, "motion design" em serifada itálica branca
+(Instrument Serif ou Fraunces itálico) entrando com fade e leve deslize.
+As letras do nome mudam de peso uma de cada vez (fonte variável, de fina para grossa), como uma onda.
+
+CENA 3 · 2,6 a 3,6 s · PRETO COM LUZ LARANJA  (legenda: "Nem isso.")
+Paisagem 3D de VOXELS: um terreno de cubos laranja formando montanhas em perspectiva isométrica,
+subindo e descendo como onda. Uma esfera cromada (metal espelhado) com um anel fino em volta
+orbita por cima do terreno. Luz de borda rosada. HUD: "3D / VOXELS".
+
+CENA 4 · 3,6 a 4,6 s · AZUL ROYAL [#2B4BFF]  (legenda: "Nem isso")
+Tipografia cinética: a palavra "MOTION" repetida em várias linhas ocupando a tela toda,
+só com contorno branco, cada linha correndo para um lado (uma para a esquerda, a outra para a direita).
+No centro, uma linha com "MOTION" preenchida em branco, maior.
+
+CENA 5 · 4,6 a 6,6 s · AZUL-MARINHO QUASE PRETO  (legenda: "Cada quadro desse vídeo")
+Um contador gigante no centro: "QUADRO / 0540" em laranja mono pequeno em cima,
+e embaixo o número do quadro atual em branco, Inter 900 gigante (ex.: 0134, 0135, 0136...),
+contando de verdade com o quadro do vídeo. Leves linhas de varredura (scanlines) na tela.
+HUD: "CÓDIGO REAL DESTA PEÇA".
+
+CENA 6 · 6,6 a 8,8 s · EDITOR DE CÓDIGO ESCURO  (legenda: "...foi escrito em código pelo Claude.")
+A tela vira um editor de código com números de linha (590, 591...) rolando para cima suavemente,
+com realce de sintaxe (azul, laranja, branco). Quando a voz diz "Claude", uma linha inteira
+fica destacada com fundo laranja: "// ★ cada quadro deste vídeo é esta função".
+O contador de quadros continua pequeno no canto de baixo.
+Use o código REAL do próprio vídeo, se possível.
+
+CENA 7 · 8,8 a 9,8 s · BRANCO  (legenda: "Tipografia,")
+Fundo branco. "Tipografia" em preto, grande, com as letras mudando de peso em onda
+(fonte variável, de 100 a 900). Embaixo, "cinética" em serifada itálica laranja.
+
+CENA 8 · 9,8 a 10,3 s · CINZA ESCURO  (legenda: "Tipografia, 3D,")
+A palavra "3D" em 3D de verdade: letras laranja extrudadas (com profundidade),
+com degradê laranja para vermelho e brilho na borda, girando devagar. HUD: "3D / EXTRUSÃO".
+
+CENA 9 · 10,3 a 10,9 s · AZUL ESCURO  (legenda: "...partículas,")
+Cerca de 3.200 partículas brancas pequenas voando e se juntando para formar "[SuaMarca]".
+Algumas ficam soltas, piscando como poeira. HUD: "PARTÍCULAS · n = 3200".
+
+CENA 10 · 10,9 a 11,8 s · AZUL ESCURO  (legenda: "...câmera,")
+Interface de câmera: "● REC" vermelho no canto, "50mm  f/1.4" em cima,
+quatro cantoneiras de foco no centro, e o nome em partículas atrás entrando em foco
+(desfocado para nítido). HUD: "CÂMERA".
+
+CENA 11 · 11,8 a 13,0 s · ROSA [#E23A7A]  (legenda: "...som.")
+Uma onda de som branca no centro: barras verticais arredondadas que sobem e descem
+seguindo o volume REAL da narração (leia o áudio e use a amplitude), ligadas por uma linha pontilhada.
+HUD: "SOM · ONDA REAL DA VOZ".
+
+CENA 12 · 13,0 a 14,6 s · BRANCO  (legenda: "Ninguém abriu um programa de edição.")
+Painel de dados em fundo branco:
+- em cima: "render · [nome-do-arquivo].mp4" em mono cinza;
+- à esquerda: contador grande "0480" subindo até "0540", com "/ 540 quadros" embaixo;
+- à direita: gráfico de barras pretas "quadros por cena", uma barra em laranja;
+- embaixo: "programas de edição abertos:" e um "0" laranja grande.
+HUD: "DADOS DESTA PEÇA".
+
+FECHO A · 14,6 a 16,2 s · ARQUIVO DO PROMPT, FUNDO ESCURO  (legenda: "Quer ver o texto que gerou isso?")
+Um arquivo de texto aberto (aba "[nome].md") com o título
+"# 06 — SHOWREEL "NEM ISSO"" e um parágrafo do pedido sendo digitado com cursor piscando.
+A partir da terceira linha o texto fica DESFOCADO (blur forte), para dar curiosidade.
+A câmera aproxima um pouco do texto. "texto" fica laranja na legenda.
+
+FECHO B · 16,2 a 18,0 s · AZUL-MARINHO [#1C2A55]  (legenda: "Comenta MOTION")
+Logo "[SuaMarca]" branco no centro (parte em negrito, parte fina) com uma bolinha laranja ao lado.
+Embaixo, um botão em forma de pílula laranja com "Comenta MOTION" em branco, entrando com
+um pulo (escala 0,8 → 1,05 → 1) e depois pulsando de leve.
+Na legenda, "MOTION" em laranja e maiúsculas.
+
+=====================================================================
+7. TRANSIÇÕES E RITMO
+=====================================================================
+- As cenas trocam em CORTE SECO, sempre no início de uma palavra falada (nunca no meio).
+- No corte, um flash rápido de luz (2 quadros) na cor da cena que entra.
+- Ritmo acelera no meio ("Tipografia, 3D, partículas, câmera, som" = uma cena por palavra)
+  e desacelera no fecho.
+
+=====================================================================
+8. SOM
+=====================================================================
+- Narração na frente (voz animada, natural).
+- Um "whoosh" curto em cada corte de cena, um clique de teclado na digitação da cena 1,
+  bipes digitais no contador e um "pop" quando o botão "Comenta MOTION" aparece.
+- Efeitos baixos (uns 60% do volume da voz). Volume final em torno de -14 LUFS.
+
+=====================================================================
+9. MARGEM SEGURA (Instagram)
+=====================================================================
+Nada importante nos 250 px de cima nem nos 380 px de baixo, e texto entre x 90 e x 990.
+
+=====================================================================
+10. COMO TRABALHAR COMIGO
+=====================================================================
+1. Primeiro faça a moldura (HUD) e a legenda e me mostre uma imagem.
+2. Depois faça as cenas uma por vez e me mostre um quadro de cada uma para aprovar.
+3. Só então junte com a narração e sincronize as legendas palavra por palavra.
+4. Antes de entregar, confira: 18 s exatos, legenda batendo com a voz,
+   nenhum texto cortado na margem, nenhum quadro vazio ou preto.` },
+    ],
+  },
+
+     {
     slug: "estilo-gta-vi",
     titulo: "Estilo GTA VI",
     categoria: "Imagens",
