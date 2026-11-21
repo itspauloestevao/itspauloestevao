@@ -41,6 +41,21 @@ window.SITE = {
 };
 
 window.CONTEUDOS = [
+
+     {
+    slug: "estilo-gta-vi",
+    titulo: "Estilo GTA VI",
+    categoria: "Imagens",
+    data: "2026-11-19",
+    palavraChave: "GTA",
+    selo: "Prompt GTA 6",
+    resumo: "Transforme qualquer foto em personagem do GTA VI com esse prompt. Copie, cole e gere a sua versão.",
+    destaques: ["Escolha a imagem da pessoa que quer realizar a transformação.","Abra a ferramenta de IA que você usa e adicione a sua foto escolhida.","Envie a imagem, cole o prompt abaixo e gere. Faça 2 ou 3 versões e fique com a mais natural."],
+    github: "",
+    blocos: [
+      { tipo: "prompt", titulo: "Transforme qualquer foto em personagem do GTA VI", conteudo: `Transform this image into a modern Grand Theft Auto VI-inspired visual style. Preserve the original composition, subject, pose, and facial features, but enhance it with a highly polished, next-gen video game aesthetic. Apply ultra-realistic rendering with cinematic lighting; high dynamic range (HDR) with realistic shadows and reflections; detailed skin textures and natural imperfections (not cartoonish); subtle stylization inspired by GTA VI character design — modern, grounded, semi-realistic, NOT exaggerated or comic-like; vibrant but controlled color grading with Miami/Vice City-inspired tones, warm highlights and teal shadows; depth of field and environmental atmosphere for immersion; and clean, sharp focus with AAA video game quality. If applicable, enhance the background to feel like a living open-world city, with a modern Vice City vibe: neon lights, palm trees, urban luxury, and night glow or sunset lighting. Do NOT convert into cartoon, comic, or GTA V-style illustration, avoid thick outlines or exaggerated proportions, and maintain realism with subtle stylization only, keeping the subject recognizable and authentic. The final result should be a cinematic, next-generation GTA VI-style render that looks like a character from a modern AAA open-world game.` },
+    ],
+  },
   /* ---------------------------------------------------------- */
   {
     slug: "gta",
